@@ -1432,7 +1432,7 @@ consultas_sql = {
         )
         SELECT fecha
         , coppel, p.mediana_1, (CASE WHEN (p.mediana_1 + 3*p.desviacion_1 > 1) then 1 else (p.mediana_1 + 3*p.desviacion_1) END) AS l_sup, (CASE WHEN (p.mediana_1 - 3*p.desviacion_1 < 0) then 0 else (p.mediana_1 - 3*p.desviacion_1) END) AS l_inf
-        , motos, p.mediana_2, 1 AS l_sup, 0 AS l_inf
+        , motos, p.mediana_2, 0.01 AS l_sup, 0 AS l_inf
         , ambos, p.mediana_3, (CASE WHEN (p.mediana_3 + 3*p.desviacion_3 > 1) then 1 else (p.mediana_3 + 3*p.desviacion_3) END) AS l_sup, (CASE WHEN (p.mediana_3 - 3*p.desviacion_3 < 0) then 0 else (p.mediana_3 - 3*p.desviacion_3) END) AS l_inf
         FROM tmp, (SELECT 
         PERCENTILE_CONT(0.5) WITHIN group (ORDER BY coppel) AS mediana_1, stddev_pop(coppel) AS desviacion_1
